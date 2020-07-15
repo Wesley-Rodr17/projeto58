@@ -50,9 +50,12 @@ class ModeloController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $modelo = Modelo::find($id);
 
+        return view ('modelos.show', compact('modelo'));
+        //return view ('modelos.show')->with(['modelo' => $modelo]);
+        
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -61,7 +64,9 @@ class ModeloController extends Controller
      */
     public function edit($id)
     {
-        //
+        $modelo = Modelo::find($id);
+        return view ('modelos.edit', compact('modelo'));
+
     }
 
     /**
@@ -73,7 +78,8 @@ class ModeloController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $modelo = Modelo::find($id)->update($request->all());
+        return redirect()->route('modelos.index');
     }
 
     /**
@@ -84,6 +90,7 @@ class ModeloController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $modelo = Modelo::find($id)->delete();
+        return redirect()->route('modelos.index');
     }
 }

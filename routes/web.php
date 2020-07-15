@@ -15,7 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/modelos', 'ModeloController');
+Route::resource('/modelos', 'ModeloController', ['except' => ['destroy']]);
+
+Route::get('/modelos/{modelo}/delete', 'ModeloController@destroy')->name('modelos.destroy');
 
 Auth::routes();
 
